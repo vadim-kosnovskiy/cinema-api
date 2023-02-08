@@ -32,3 +32,13 @@ docker-compose up
 
 - create user via /api/user/register/
 - get access token via /api/user/token/
+
+## Features
+
+- JWT authentication
+- Admin panel /admin/
+- Documentation is located at /api/doc/swagger/ or /api/doc/redoc/
+- Managing orders and tickets
+- Creating movies with genres and actors
+- Creating cinema halls
+- Adding movie sessions
