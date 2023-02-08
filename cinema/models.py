@@ -97,12 +97,12 @@ class Ticket(models.Model):
     seat = models.IntegerField()
 
     @staticmethod
-    def validate_ticket(row, seat, cinema_hall, error_to_raise):
+    def validate_ticket(row, seat, movie_session: MovieSession, error_to_raise):
         for ticket_attr_value, ticket_attr_name, cinema_hall_attr_name in [
             (row, "row", "rows"),
             (seat, "seat", "seats_in_row"),
         ]:
-            count_attrs = getattr(cinema_hall, cinema_hall_attr_name)
+            count_attrs = getattr(movie_session.cinema_hall, cinema_hall_attr_name)
             if not (1 <= ticket_attr_value <= count_attrs):
                 raise error_to_raise(
                     {
@@ -117,7 +117,7 @@ class Ticket(models.Model):
         Ticket.validate_ticket(
             self.row,
             self.seat,
-            self.movie_session.cinema_hall,
+            self.movie_session,
             ValidationError,
         )
 
